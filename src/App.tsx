@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Grommet } from 'grommet'
+import Board from './components/Board'
 
 const App: React.FC = () => {
+  let cards = [
+    { text: 'In fringilla' },
+    { text: 'nunc eget' },
+    { text: 'nibh dolor' },
+    { text: 'suscipit ligula' },
+    { text: 'porttitor tristique' }
+  ]
+
+  const board = [
+    { title: 'Ready For Development', cards: cards },
+    { title: 'In Progress', cards: [] },
+    { title: 'Done', cards: cards },
+    { title: 'Merged', cards: cards },
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet plain>
+      <Board board={board}/>
+    </Grommet>
   );
 }
 

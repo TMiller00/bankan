@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('<App/>', () => {
+  test('renders the board', () => {
+    const { container } = render(<App/>)
+    expect(container.querySelectorAll('h3').length).toEqual(4)
+  })
+})
+
