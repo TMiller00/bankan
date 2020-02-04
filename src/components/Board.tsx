@@ -8,9 +8,11 @@ type BoardType = {
 }
 
 const Board: React.FC<BoardType> = ({ board }) => {
+  const lanes = Object.values(board)
+
   return (
     <Box direction='row' justify='around'>
-      { board.map((lane: LaneType, i: number) => <Lane {...lane} laneNumber={i} boardLength={board.length} key={i}/>) }
+      { lanes.map((lane: LaneType, i: number) => <Lane {...lane} laneNumber={i} boardLength={lanes.length} key={i}/>) }
     </Box>
   )
 }

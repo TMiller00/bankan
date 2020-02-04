@@ -18,7 +18,7 @@ const Lane: React.FC<LaneType & LaneProperties> = (props) => {
   return (
     <Box basis='full' margin={{ left: 'xsmall', right: 'xsmall' }}>
       <Heading alignSelf='center' level={3}>{ title }</Heading>
-      { cards.map((card: CardType, i: number) => <Card {...card} laneNumber={laneNumber} boardLength={boardLength} key={i}/>) }
+      { cards.map((card: CardType, i: number) => <Card {...card} laneNumber={laneNumber} index={i} boardLength={boardLength} key={i}/>) }
     </Box>
   )
 }
