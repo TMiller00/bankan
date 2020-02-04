@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { moveRight, moveLeft } from '../redux/actions'
 import { Box, TextArea } from 'grommet'
@@ -14,6 +14,10 @@ export type CardType = {
 
 const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, boardLength, moveRight, moveLeft }) => {
   const [value, setValue] = useState(text || '')
+
+  useEffect(() => {
+    setValue(text)
+  }, [text])
 
   return (
     <Box

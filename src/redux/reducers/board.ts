@@ -22,34 +22,36 @@ type Action = {
 }
 
 export default (state = initialState, action: Action) => {
+  const { board } = state
+
   switch(action.type) {
     case MOVE_RIGHT: {
       const { index, laneNumber } = action.payload
-      const actionedLane = state.board[laneNumber]
-      const nextLaneCards = [...state.board[laneNumber + 1].cards, actionedLane.cards[index]]
-      const actionedLaneCards = actionedLane.cards.filter((c: any) => c.text !== (actionedLane.cards[index].text))
+      const actionedLane = board[laneNumber]
+      const nextLaneCards = [...board[laneNumber + 1].cards, actionedLane.cards[index]]
+      const actionedLaneCards = actionedLane.cards.filter((c: any, i: number) => i !== index)
 
       return {
         ...state,
         board: {
-          [laneNumber]: Object.assign(actionedLane, { cards: actionedLaneCards }),
-          [laneNumber + 1]: Object.assign(state.board[laneNumber + 1], { cards: nextLaneCards }),
-          ...state.board,
+          ...board,
+          [laneNumber]: { ...actionedLane, cards: actionedLaneCards },
+          [laneNumber + 1]: { ...board[laneNumber + 1], cards: nextLaneCards },
         }
       }
     }
     case MOVE_LEFT: {
       const { index, laneNumber } = action.payload
       const actionedLane = state.board[laneNumber]
-      const prevLaneCards = [...state.board[laneNumber - 1].cards, actionedLane.cards[index]]
-      const actionedLaneCards = actionedLane.cards.filter((c: any) => c.text !== (actionedLane.cards[index].text))
+      const prevLaneCards = [...board[laneNumber - 1].cards, actionedLane.cards[index]]
+      const actionedLaneCards = actionedLane.cards.filter((c: any, i: number) => i !== index)
 
       return {
         ...state,
         board: {
-          [laneNumber]: Object.assign(actionedLane, { cards: actionedLaneCards }),
-          [laneNumber - 1]: Object.assign(state.board[laneNumber - 1], { cards: prevLaneCards }),
-          ...state.board,
+          ...board,
+          [laneNumber]: { ...actionedLane, cards: actionedLaneCards },
+          [laneNumber - 1]: { ...board[laneNumber - 1], cards: prevLaneCards },
         }
       }
     }
