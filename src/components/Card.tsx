@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { moveRight, moveLeft } from '../redux/actions'
+import { moveRight, moveLeft, updateCard } from '../redux/actions'
 import { Box, TextArea } from 'grommet'
 import { CaretNext, CaretPrevious } from 'grommet-icons';
 import { LaneProperties } from './Lane'
@@ -10,9 +10,10 @@ export type CardType = {
   index: number,
   moveRight: any,
   moveLeft: any,
+  updateCard: any,
 }
 
-const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, boardLength, moveRight, moveLeft }) => {
+const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, boardLength, moveRight, moveLeft, updateCard }) => {
   const [value, setValue] = useState(text || '')
 
   useEffect(() => {
@@ -35,11 +36,11 @@ const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, bo
       <TextArea
         placeholder="Type here"
         value={value}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => updateCard(index, laneNumber, event.target.value)}
       />
       { laneNumber !== boardLength - 1 && <CaretNext onClick={() => moveRight(index, laneNumber)}/> }
     </Box>
   )
 }
 
-export default connect(null, { moveRight, moveLeft })(Card);
+export default connect(null, { moveRight, moveLeft, updateCard })(Card);

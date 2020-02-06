@@ -15,13 +15,6 @@ const card = {
 afterEach(() => mockClick.mockClear())
 
 describe('<Card/>', () => {
-  test('updates the value of the card', () => {
-    const { getByRole } = renderWithRedux(<Card {...card}/>)
-    const textbox = getByRole('textbox')
-    fireEvent.change(textbox, { target: { value: 'A new value' }})
-    expect(textbox).toHaveTextContent('A new value')
-  })
-
   test('renders both carets', () => {
     const { container } = renderWithRedux(<Card {...card}/>)
     const carets = container.querySelectorAll('svg')
