@@ -14,11 +14,11 @@ const board = {
   3: { title: 'Merged', cards: [] },
 }
 
-const initialState = { board } as any;
+export const initialState = { board } as any;
 
 type Action = {
-  type: string
-  payload: any
+  type: string | undefined
+  payload: any | undefined
 }
 
 export default (state = initialState, action: Action) => {

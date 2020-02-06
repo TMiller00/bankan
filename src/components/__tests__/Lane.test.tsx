@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { renderWithRedux } from '../../testHelper'
 import Lane from '../Lane';
 
 const card = {
@@ -15,7 +16,7 @@ const lane = {
 
 describe('<Lane/>', () => {
   test('renders the correct number of cards', () => {
-    const { debug, getAllByRole } = render(<Lane {...lane}/>)
+    const { getAllByRole } = renderWithRedux(<Lane {...lane}/>)
     expect(getAllByRole('textbox').length).toEqual(5)
   })
 })
