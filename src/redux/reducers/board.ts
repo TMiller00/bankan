@@ -1,15 +1,12 @@
-import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD } from '../actionTypes'
+import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD, ADD_CARD } from '../actionTypes'
 
 let cards = [
-  { text: 'nunc eget' },
-  { text: 'nibh dolor' },
-  { text: 'suscipit ligula' },
-  { text: 'porttitor tristique' }
+  { text: 'Hola mundo!' },
 ]
 
 const board = {
-  0: { title: 'Ready For Development', cards: cards },
-  1: { title: 'In Progress', cards: [{ text: 'In fringilla' }] },
+  0: { title: 'Ready For Development', cards },
+  1: { title: 'In Progress', cards: [] },
   2: { title: 'In Review', cards: [] },
   3: { title: 'Merged', cards: [] },
 }
@@ -70,6 +67,17 @@ export default (state = initialState, action: Action) => {
         board: {
           ...board,
           [laneNumber]: { ...board[laneNumber], cards: updatedCards },
+        }
+      }
+    }
+    case ADD_CARD: {
+      const { laneNumber, text } = action.payload
+
+      return {
+        ...state,
+        board: {
+          ...board,
+          [laneNumber]: { ...board[laneNumber], cards: [...board[laneNumber].cards, { text }] }
         }
       }
     }

@@ -1,5 +1,5 @@
-import { moveRight, moveLeft, updateCard } from '../actions'
-import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD } from '../actionTypes'
+import { moveRight, moveLeft, updateCard, addCard } from '../actions'
+import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD, ADD_CARD } from '../actionTypes'
 
 describe('actions', () => {
   it('should create an action to move a card right', () => {
@@ -31,5 +31,15 @@ describe('actions', () => {
       payload: { index, laneNumber, text }
     }
     expect(updateCard(index, laneNumber, text)).toEqual(expectedAction)
+  })
+
+  it('should create an action to update a card', () => {
+    const laneNumber = 0
+    const text = 'Lorem ipsum'
+    const expectedAction = {
+      type: ADD_CARD,
+      payload: { laneNumber, text }
+    }
+    expect(addCard(laneNumber, text)).toEqual(expectedAction)
   })
 })

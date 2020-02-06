@@ -1,21 +1,14 @@
 import reducer, { initialState } from '../board'
-import { MOVE_LEFT, MOVE_RIGHT, UPDATE_CARD } from '../../actionTypes'
+import { MOVE_LEFT, MOVE_RIGHT, UPDATE_CARD, ADD_CARD } from '../../actionTypes'
 
 const moveRightExpect = {
   "board": {
     "0": {
-      "cards": [
-        {"text": "nibh dolor"},
-        {"text": "suscipit ligula"},
-        {"text": "porttitor tristique"}
-      ],
+      "cards": [],
       "title": "Ready For Development"
     },
     "1": {
-      "cards": [
-        {"text": "In fringilla"},
-        {"text": "nunc eget"}
-      ],
+      "cards": [{"text": "Hola mundo!"}],
       "title": "In Progress"},
     "2": {
       "cards": [],
@@ -31,13 +24,7 @@ const moveRightExpect = {
 const moveLeftExpect = {
   "board": {
     "0": {
-      "cards": [
-        {"text": "nunc eget"},
-        {"text": "nibh dolor"},
-        {"text": "suscipit ligula"},
-        {"text": "porttitor tristique"},
-        {"text": "In fringilla"}
-      ],
+      "cards": [{"text": "Hola mundo!"}],
       "title": "Ready For Development"
     },
     "1": {
@@ -57,16 +44,31 @@ const moveLeftExpect = {
 const updateCardExpect = {
   "board": {
     "0": {
-      "cards": [
-        {"text": "test"},
-        {"text": "nibh dolor"},
-        {"text": "suscipit ligula"},
-        {"text": "porttitor tristique"},
-      ],
+      "cards": [{"text": "Hello world!"}],
       "title": "Ready For Development"
     },
     "1": {
-      "cards": [{"text": "In fringilla"}],
+      "cards": [],
+      "title": "In Progress"},
+    "2": {
+      "cards": [],
+      "title": "In Review"
+    },
+    "3": {
+      "cards": [],
+      "title": "Merged"
+    }
+  }
+}
+
+const addCardExpect = {
+  "board": {
+    "0": {
+      "cards": [{"text": "Hola mundo!"}, {"text": "Hello world!"}],
+      "title": "Ready For Development"
+    },
+    "1": {
+      "cards": [],
       "title": "In Progress"},
     "2": {
       "cards": [],
@@ -90,12 +92,17 @@ describe('board reducer', () => {
   })
 
   it('should handle MOVE_LEFT', () => {
-    expect(reducer(undefined, { type: MOVE_LEFT, payload: { index: 0, laneNumber: 1 }})
+    expect(reducer(moveRightExpect, { type: MOVE_LEFT, payload: { index: 0, laneNumber: 1 }})
     ).toEqual(moveLeftExpect)
   })
 
+  it('should handle ADD_CARD', () => {
+    expect(reducer(undefined, { type: ADD_CARD, payload: { laneNumber: 0, text: 'Hello world!' }})
+    ).toEqual(addCardExpect)
+  })
+
   it('should handle UPDATE_CARD', () => {
-    expect(reducer(undefined, { type: UPDATE_CARD, payload: { index: 0, laneNumber: 0, text: 'test' }})
+    expect(reducer(undefined, { type: UPDATE_CARD, payload: { index: 0, laneNumber: 0, text: 'Hello world!' }})
     ).toEqual(updateCardExpect)
   })
 })

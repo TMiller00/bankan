@@ -17,6 +17,6 @@ const lane = {
 describe('<Lane/>', () => {
   test('renders the correct number of cards', () => {
     const { getAllByRole } = renderWithRedux(<Lane {...lane}/>)
-    expect(getAllByRole('textbox').length).toEqual(5)
+    expect(getAllByRole('textbox').length).toEqual(6)
   })
 })
