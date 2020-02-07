@@ -1,21 +1,26 @@
-import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD, ADD_CARD } from './actionTypes'
+import * as types from './actionTypes'
 
 export const moveRight = (index: number, laneNumber: number) => ({
-  type: MOVE_RIGHT,
+  type: types.MOVE_RIGHT,
   payload: { index, laneNumber }
 })
 
 export const moveLeft = (index: number, laneNumber: number) => ({
-  type: MOVE_LEFT,
+  type: types.MOVE_LEFT,
   payload: { index, laneNumber }
 })
 
 export const updateCard = (index: number, laneNumber: number, text: string) => ({
-  type: UPDATE_CARD,
+  type: types.UPDATE_CARD,
   payload: { index, laneNumber, text }
 })
 
 export const addCard = (laneNumber: number, text: string) => ({
-  type: ADD_CARD,
+  type: types.ADD_CARD,
   payload: { laneNumber, text }
+})
+
+export const deleteCard = (index: number, laneNumber: number) => ({
+  type: types.DELETE_CARD,
+  payload: { index, laneNumber }
 })

@@ -18,7 +18,7 @@ describe('<Card/>', () => {
   test('renders both carets', () => {
     const { container } = renderWithRedux(<Card {...card}/>)
     const carets = container.querySelectorAll('svg')
-    expect(carets.length).toEqual(2)
+    expect(carets.length).toEqual(3)
   })
 })
 

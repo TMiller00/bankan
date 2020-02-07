@@ -28,10 +28,10 @@ const Lane: React.FC<LaneType & LaneProperties> = (props) => {
   return (
     <Box basis='full' margin={{ left: 'xsmall', right: 'xsmall' }}>
       <Heading alignSelf='center' level={3}>{ title }</Heading>
-      { cards.map((card: CardType, i: number) => <Card {...card} laneNumber={laneNumber} index={i} boardLength={boardLength} key={i}/>) }
       <Box
         direction='row'
         align='center'
+        margin={{ bottom: 'medium' }}
       >
         <TextInput
           placeholder='Add Card'
@@ -40,6 +40,7 @@ const Lane: React.FC<LaneType & LaneProperties> = (props) => {
         />
         <Add onClick={() => handleAdd()}/>
       </Box>
+      { cards.map((card: CardType, i: number) => <Card {...card} laneNumber={laneNumber} index={i} boardLength={boardLength} key={i}/>) }
     </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD, ADD_CARD } from '../actionTypes'
+import { MOVE_RIGHT, MOVE_LEFT, UPDATE_CARD, ADD_CARD, DELETE_CARD } from '../actionTypes'
 
 let cards = [
   { text: 'Hola mundo!' },
@@ -78,6 +78,18 @@ export default (state = initialState, action: Action) => {
         board: {
           ...board,
           [laneNumber]: { ...board[laneNumber], cards: [...board[laneNumber].cards, { text }] }
+        }
+      }
+    }
+    case DELETE_CARD: {
+      const { index, laneNumber } = action.payload
+      const actionedLaneCards = board[laneNumber].cards.filter((c: any, i: number) => i !== index)
+
+      return {
+        ...state,
+        board: {
+          ...board,
+          [laneNumber]: { ...board[laneNumber], cards: actionedLaneCards },
         }
       }
     }

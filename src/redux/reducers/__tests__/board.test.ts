@@ -1,5 +1,5 @@
 import reducer, { initialState } from '../board'
-import { MOVE_LEFT, MOVE_RIGHT, UPDATE_CARD, ADD_CARD } from '../../actionTypes'
+import { MOVE_LEFT, MOVE_RIGHT, UPDATE_CARD, ADD_CARD, DELETE_CARD } from '../../actionTypes'
 
 const moveRightExpect = {
   "board": {
@@ -81,6 +81,26 @@ const addCardExpect = {
   }
 }
 
+const deleteCardExpect = {
+  "board": {
+    "0": {
+      "cards": [],
+      "title": "Ready For Development"
+    },
+    "1": {
+      "cards": [],
+      "title": "In Progress"},
+    "2": {
+      "cards": [],
+      "title": "In Review"
+    },
+    "3": {
+      "cards": [],
+      "title": "Merged"
+    }
+  }
+}
+
 describe('board reducer', () => {
   it('should return the intial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
@@ -102,7 +122,12 @@ describe('board reducer', () => {
   })
 
   it('should handle UPDATE_CARD', () => {
-    expect(reducer(undefined, { type: UPDATE_CARD, payload: { index: 0, laneNumber: 0, text: 'Hello world!' }})
+    expect(reducer(initialState, { type: UPDATE_CARD, payload: { index: 0, laneNumber: 0, text: 'Hello world!' }})
     ).toEqual(updateCardExpect)
+  })
+
+  it('should handle DELETE_CARD', () => {
+    expect(reducer(initialState, { type: DELETE_CARD, payload: { index: 0, laneNumber: 0 }})
+    ).toEqual(deleteCardExpect)
   })
 })

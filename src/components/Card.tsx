@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { moveRight, moveLeft, updateCard } from '../redux/actions'
-import { Box, TextArea } from 'grommet'
-import { CaretNext, CaretPrevious } from 'grommet-icons';
+import { moveRight, moveLeft, updateCard, deleteCard } from '../redux/actions'
+import { Box, TextInput } from 'grommet'
+import { CaretNext, CaretPrevious, Close } from 'grommet-icons';
 import { LaneProperties } from './Lane'
 
 export type CardType = {
@@ -11,9 +11,11 @@ export type CardType = {
   moveRight: any,
   moveLeft: any,
   updateCard: any,
+  deleteCard: any,
 }
 
-const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, boardLength, moveRight, moveLeft, updateCard }) => {
+const Card: React.FC<CardType & LaneProperties> = (props) => {
+  const { text, index, laneNumber, boardLength, moveRight, moveLeft, updateCard, deleteCard } = props
   const [value, setValue] = useState(text || '')
 
   useEffect(() => {
@@ -25,22 +27,37 @@ const Card: React.FC<CardType & LaneProperties> = ({ text, index, laneNumber, bo
       align={'center'}
       alignContent={'center'}
       border={{ color: 'brand', size: 'xsmall' }}
-      direction='row'
-      height="xsmall"
-      justify={'center'}
+      direction='column'
+      height='xsmall'
       margin={{ bottom: 'medium' }}
-      pad="medium"
+      pad="xsmall"
       round="xsmall"
     >
-      { laneNumber !== 0 && <CaretPrevious onClick={() => moveLeft(index, laneNumber)}/> }
-      <TextArea
-        placeholder="Type here"
-        value={value}
-        onChange={(event) => updateCard(index, laneNumber, event.target.value)}
-      />
-      { laneNumber !== boardLength - 1 && <CaretNext onClick={() => moveRight(index, laneNumber)}/> }
+      <Box
+        alignSelf='start'
+        align='start'
+      >
+        <Close
+          size='small'
+          onClick={() => deleteCard(index, laneNumber)}
+        />
+      </Box>
+      <Box
+        direction='row'
+        justify={'center'}
+        align={'center'}
+        margin={{ vertical: 'xsmall' }}
+      >
+        { laneNumber !== 0 && <CaretPrevious onClick={() => moveLeft(index, laneNumber)}/> }
+        <TextInput
+          placeholder="Type here"
+          value={value}
+          onChange={(event) => updateCard(index, laneNumber, event.target.value)}
+        />
+        { laneNumber !== boardLength - 1 && <CaretNext onClick={() => moveRight(index, laneNumber)}/> }
+      </Box>
     </Box>
   )
 }
 
-export default connect(null, { moveRight, moveLeft, updateCard })(Card);
+export default connect(null, { moveRight, moveLeft, updateCard, deleteCard })(Card);
