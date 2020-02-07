@@ -15,9 +15,9 @@ export const updateCard = (index: number, laneNumber: number, text: string) => (
   payload: { index, laneNumber, text }
 })
 
-export const addCard = (laneNumber: number, text: string) => ({
+export const addCard = (text: string) => ({
   type: types.ADD_CARD,
-  payload: { laneNumber, text }
+  payload: { text }
 })
 
 export const deleteCard = (index: number, laneNumber: number) => ({

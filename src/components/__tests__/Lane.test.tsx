@@ -9,7 +9,7 @@ const card = {
 
 const lane = {
   title: 'To Do',
-  cards: Array(5).fill(card),
+  cards: Array(1).fill(card),
   laneNumber: 0,
   boardLength: 3
 }
@@ -17,6 +17,6 @@ const lane = {
 describe('<Lane/>', () => {
   test('renders the correct number of cards', () => {
     const { getAllByRole } = renderWithRedux(<Lane {...lane}/>)
-    expect(getAllByRole('textbox').length).toEqual(6)
+    expect(getAllByRole('textbox').length).toEqual(1)
   })
 })

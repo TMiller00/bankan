@@ -33,14 +33,13 @@ describe('actions', () => {
     expect(updateCard(index, laneNumber, text)).toEqual(expectedAction)
   })
 
-  it('should create an action to update a card', () => {
-    const laneNumber = 0
+  it('should create an action to add a card', () => {
     const text = 'Lorem ipsum'
     const expectedAction = {
       type: types.ADD_CARD,
-      payload: { laneNumber, text }
+      payload: { text }
     }
-    expect(addCard(laneNumber, text)).toEqual(expectedAction)
+    expect(addCard(text)).toEqual(expectedAction)
   })
 
   it('should create an action to delete a card', () => {

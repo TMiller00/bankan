@@ -71,13 +71,13 @@ export default (state = initialState, action: Action) => {
       }
     }
     case ADD_CARD: {
-      const { laneNumber, text } = action.payload
+      const { text } = action.payload
 
       return {
         ...state,
         board: {
           ...board,
-          [laneNumber]: { ...board[laneNumber], cards: [...board[laneNumber].cards, { text }] }
+          '0': { ...board['0'], cards: [...board['0'].cards, { text }] }
         }
       }
     }

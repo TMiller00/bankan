@@ -117,7 +117,7 @@ describe('board reducer', () => {
   })
 
   it('should handle ADD_CARD', () => {
-    expect(reducer(undefined, { type: ADD_CARD, payload: { laneNumber: 0, text: 'Hello world!' }})
+    expect(reducer(undefined, { type: ADD_CARD, payload: { text: 'Hello world!' }})
     ).toEqual(addCardExpect)
   })
 
